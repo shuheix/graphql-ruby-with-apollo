@@ -85,8 +85,16 @@ GEM
       reline (>= 0.3.8)
     drb (2.2.1)
     erubi (1.13.1)
+    fiber-storage (1.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    graphql (2.5.1)
+      base64
+      fiber-storage
+      logger
+    graphql-batch (0.6.0)
+      graphql (>= 1.12.18, < 3)
+      promise.rb (~> 0.7.2)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     io-console (0.8.0)
@@ -135,6 +143,7 @@ GEM
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
+    promise.rb (0.7.4)
     psych (5.2.3)
       date
       stringio
@@ -142,6 +151,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.1.12)
+    rack-cors (2.0.2)
+      rack (>= 2.0.0)
     rack-session (2.1.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -218,7 +229,10 @@ PLATFORMS
 
 DEPENDENCIES
   debug
+  graphql
+  graphql-batch
   puma (>= 5.0)
+  rack-cors
   rails (~> 8.0.2)
   sqlite3 (>= 2.1)
   tzinfo-data
