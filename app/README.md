@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+https://graphql-ruby.org/
 
-* Ruby version
+## RelayStyle
+UUIDを有効にする
 
-* System dependencies
+posgreのver13より古い場合
+```ruby
+enable_extension 'pgcrypto' unless extension_enabled?('pgcrypto')
+```
 
-* Configuration
+posgreのver13以上
+```ruby
+# config/allication.rb
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```

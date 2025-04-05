@@ -1,0 +1,28 @@
+services:
+  app:
+    build: .
+    container_name: app
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - ./:/app
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    stdin_open: true
+    tty: true
+    env_file:
+      - .env
+  db:
+    image: postgres:16.0
+    container_name: db
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: deploy
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ignore_dir:/var/lib/postgresql/data
+
+volumes:
+  ignore_dir:
