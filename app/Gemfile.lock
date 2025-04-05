@@ -102,6 +102,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
+    language_server-protocol (3.17.0.4)
     logger (1.7.0)
     loofah (2.24.0)
       crass (~> 1.0.2)
@@ -140,9 +141,11 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.7-x86_64-linux-musl)
       racc (~> 1.4)
+    ostruct (0.6.1)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
+    prism (1.4.0)
     promise.rb (0.7.4)
     psych (5.2.3)
       date
@@ -190,11 +193,19 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rake (13.2.1)
+    rbs (3.9.2)
+      logger
     rdoc (6.13.1)
       psych (>= 4.0.0)
     reline (0.6.1)
       io-console (~> 0.5)
+    ruby-lsp (0.23.13)
+      language_server-protocol (~> 3.17.0)
+      prism (>= 1.2, < 2.0)
+      rbs (>= 3, < 4)
+      sorbet-runtime (>= 0.5.10782)
     securerandom (0.4.1)
+    sorbet-runtime (0.5.11989)
     sqlite3 (2.6.0-aarch64-linux-gnu)
     sqlite3 (2.6.0-aarch64-linux-musl)
     sqlite3 (2.6.0-arm-linux-gnu)
@@ -231,9 +242,11 @@ DEPENDENCIES
   debug
   graphql
   graphql-batch
+  ostruct
   puma (>= 5.0)
   rack-cors
   rails (~> 8.0.2)
+  ruby-lsp
   sqlite3 (>= 2.1)
   tzinfo-data
 

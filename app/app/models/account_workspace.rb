@@ -1,0 +1,2 @@
+class AccountWorkspace < ApplicationRecord
+end
