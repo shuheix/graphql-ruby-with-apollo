@@ -1,0 +1,72 @@
+# https://taskfile.dev/
+version: '3'
+tasks:
+  up:
+    cmds:
+      - docker compose up -d
+    silent: true
+  down:
+    cmds:
+      - docker compose down
+    silent: true
+  build:
+    cmds:
+      - docker compose build
+    silent: true
+  restart:
+    cmds:
+      - docker compose restart
+    silent: true
+  rails_c:
+    cmds:
+      - docker compose exec app bundle exec rails c
+    silent: true
+  rails_credential_edit:
+    cmds:
+      - docker compose exec -e EDITOR="vim" app bundle exec rails credentials:edit
+    silent: true
+  rails_g_model:
+    cmds:
+      - echo "Enter model name and attributes (e.g. User name:string email:string):"
+      - read -r model_params && docker compose exec app bundle exec rails g model $model_params
+    silent: true
+  rails_g_migration:
+    cmds:
+      - echo "Enter migration name (e.g. AddColumnToTable):"
+      - read -r migration_params && docker compose exec app bundle exec rails g migration $migration_params
+    silent: true
+  graphql_object:
+    cmds:
+      - echo "Enter object name:"
+      - read -r object_name && docker compose exec app bundle exec rails g graphql:object $object_name
+    silent: true
+  graphql_input:
+    cmds:
+      - echo "Enter input name:"
+      - read -r input_name && docker compose exec app bundle exec rails g graphql:input $input_name
+    silent: true
+  graphql_interface:
+    cmds:
+      - echo "Enter interface name:"
+      - read -r interface_name && docker compose exec app bundle exec rails g graphql:interface $interface_name
+    silent: true
+  graphql_union:
+    cmds:
+      - echo "Enter union name:"
+      - read -r union_name && docker compose exec app bundle exec rails g graphql:union $union_name
+    silent: true
+  graphql_enum:
+    cmds:
+      - echo "Enter enum name:"
+      - read -r enum_name && docker compose exec app bundle exec rails g graphql:enum $enum_name
+    silent: true
+  graphql_scalar:
+    cmds:
+      - echo "Enter scalar name:"
+      - read -r scalar_name && docker compose exec app bundle exec rails g graphql:scalar $scalar_name
+    silent: true
+  graphql_mutation:
+    cmds:
+      - echo "Enter mutation name:"
+      - read -r mutation_name && docker compose exec app bundle exec rails g graphql:mutation $mutation_name
+    silent: true
