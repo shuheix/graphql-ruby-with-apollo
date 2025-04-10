@@ -6,14 +6,13 @@ import {
 } from "@react-router/dev/routes";
 
 export default [
-	route("/", "./routes/home.tsx"),
-	route("dashboard", "./dashboard/layout.tsx", [
-		index("./dashboard/pages/DashboardPage/DashboardPage.tsx"),
-		route("mutation", "./dashboard/pages/MutationPage/MutationPage.tsx"),
-		route("query", "./dashboard/pages/QueryPage/QueryPage.tsx"),
+	route("/", "./features/graphqlSample/GraphqlSampleLayout.tsx", [
+		index("./features/graphqlSample/pages/SamplePage.tsx"),
+		route("mutation", "./features/graphqlSample/pages/MutationSamplePage.tsx"),
+		route("query", "./features/graphqlSample/pages/QuerySamplePage.tsx"),
 		route(
 			"subscription",
-			"./dashboard/pages/SubscriptionPage/SubscriptionPage.tsx",
+			"./features/graphqlSample/pages/SubscriptionSamplePage.tsx",
 		),
 	]),
 ] satisfies RouteConfig;
