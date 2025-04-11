@@ -21,7 +21,7 @@ tasks:
     cmds:
       - docker compose exec app bundle exec rails c
     silent: true
-  rails_credential_edit:
+  credential_edit:
     cmds:
       - docker compose exec -e EDITOR="vim" app bundle exec rails credentials:edit
     silent: true
@@ -35,11 +35,22 @@ tasks:
       - echo "Enter migration name (e.g. AddColumnToTable):"
       - read -r migration_params && docker compose exec app bundle exec rails g migration $migration_params
     silent: true
+  db_reset:
+    cmds:
+      - docker compose exec app bundle exec rails db:reset
+    silent: true
+  force_restart:
+    cmds:
+      - docker compose down && docker compose up -d --build
+    silent: true
   rails_g_task:
     cmds:
       - echo "Enter task name:"
       - read -r task_params && docker compose exec app bundle exec rails g task $task_params
     silent: true
+  rubocop_a:
+    cmds:
+      - docker compose exec app bundle exec rubocop -a
   graphql_object:
     cmds:
       - echo "Enter object name:"
