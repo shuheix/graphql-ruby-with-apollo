@@ -2,10 +2,10 @@ import { NavLink, Outlet } from "react-router";
 
 export default function GraphqlSampleLayout() {
 	return (
-		<div>
+		<div className="container mx-auto">
 			<header>
 				<nav>
-					<ul>
+					<ul className="flex flex-row gap-4 mb-5">
 						<li>
 							<NavLink
 								to="/"
