@@ -48,6 +48,8 @@ end
 schemaでnodeのidから特定のobjectを解決できるように修正する
 ```ruby
 class AppSchema < GraphQL::Schema
-  
+  def self.resolve_type(_abstract_type, _obj, _ctx)
+    Types.const_get("#{obj.class}Type")
+  end
 end
 ```

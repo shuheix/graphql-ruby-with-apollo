@@ -18,9 +18,7 @@ class AppSchema < GraphQL::Schema
 
   # Union and Interface Resolution
   def self.resolve_type(_abstract_type, _obj, _ctx)
-    # TODO: Implement this method
-    # to return the correct GraphQL object type for `obj`
-    raise(GraphQL::RequiredImplementationMissingError)
+    Types.const_get("#{obj.class}Type")
   end
 
   # Limit the size of incoming queries:
@@ -32,14 +30,19 @@ class AppSchema < GraphQL::Schema
   # Relay-style Object Identification:
 
   # Return a string UUID for `object`
-  def self.id_from_object(object, _type_definition, _query_ctx)
-    # For example, use Rails' GlobalID library (https://github.com/rails/globalid):
-    object.to_gid_param
+  def self.object_from_id(node_id, _ctx = {})
+    return nil unless node_id
+
+    type_name, object_id = self::UniqueWithinType.decode(node_id, separator: ':')
+    Object.const_get(type_name).find(object_id)
+  rescue NameError
+    nil
   end
 
-  # Given a string UUID, find the object
-  def self.object_from_id(global_id, _query_ctx)
-    # For example, use Rails' GlobalID library (https://github.com/rails/globalid):
-    GlobalID.find(global_id)
+  def self.id_from_object(object, _type = nil, _ctx = {})
+    return nil unless object
+
+    klass_name = object.class.name.demodulize
+    self::UniqueWithinType.encode(klass_name, object.id, separator: ':')
   end
 end
