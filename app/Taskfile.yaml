@@ -35,6 +35,11 @@ tasks:
       - echo "Enter migration name (e.g. AddColumnToTable):"
       - read -r migration_params && docker compose exec app bundle exec rails g migration $migration_params
     silent: true
+  rails_g_task:
+    cmds:
+      - echo "Enter task name:"
+      - read -r task_params && docker compose exec app bundle exec rails g task $task_params
+    silent: true
   graphql_object:
     cmds:
       - echo "Enter object name:"
@@ -69,4 +74,8 @@ tasks:
     cmds:
       - echo "Enter mutation name:"
       - read -r mutation_name && docker compose exec app bundle exec rails g graphql:mutation $mutation_name
+    silent: true
+  graphql_dump:
+    cmds:
+      - docker compose exec app bundle exec rails graphql:dump_schema
     silent: true

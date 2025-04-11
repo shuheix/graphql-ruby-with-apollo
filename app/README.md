@@ -48,5 +48,6 @@ end
 schemaでnodeのidから特定のobjectを解決できるように修正する
 ```ruby
 class AppSchema < GraphQL::Schema
+  
 end
 ```
