@@ -53,3 +53,22 @@ class AppSchema < GraphQL::Schema
   end
 end
 ```
+
+object_from_idとid_from_objectを修正
+```ruby
+  def self.object_from_id(node_id, _ctx = {})
+    return nil unless node_id
+
+    type_name, object_id = self::UniqueWithinType.decode(node_id, separator: ':')
+    Object.const_get(type_name).find(object_id)
+  rescue NameError
+    nil
+  end
+
+  def self.id_from_object(object, _type = nil, _ctx = {})
+    return nil unless object
+
+    klass_name = object.class.name.demodulize
+    self::UniqueWithinType.encode(klass_name, object.id, separator: ':')
+  end
+```
