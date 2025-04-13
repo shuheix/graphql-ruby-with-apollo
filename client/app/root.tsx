@@ -9,8 +9,8 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
-import {Provider} from "urql";
-import {client} from "app/lib/urqlClient"
+import { Provider } from "urql";
+import { client } from "app/lib/urqlClient";
 
 export function Layout({ children }: { children: React.ReactNode }) {
 	return (
@@ -22,9 +22,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body>
-			<Provider value={client}>
-				{children}
-			</Provider>
+				<Provider value={client}>{children}</Provider>
 				<ScrollRestoration />
 				<Scripts />
 			</body>

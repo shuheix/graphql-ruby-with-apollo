@@ -1,7 +1,7 @@
-import {gql, useQuery} from "urql";
-import { client } from "app/lib/urqlClient"
+import { gql, useQuery } from "urql";
+import { client } from "app/lib/urqlClient";
 
-export const clientLoader = async() => {
+export const clientLoader = async () => {
 	const GET_WORKSPACES_DOCUMENT = gql`
 		query getWorkspaces {
 			workspaces {
@@ -16,12 +16,12 @@ export const clientLoader = async() => {
 				}
 			}
 		}
-	`
+	`;
 
-	const result = await client.query(GET_WORKSPACES_DOCUMENT, {}).toPromise()
+	const result = await client.query(GET_WORKSPACES_DOCUMENT, {}).toPromise();
 
-	console.log(result)
-}
+	console.log(result);
+};
 
 export default function QuerySamplePage() {
 	return (
