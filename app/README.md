@@ -72,3 +72,63 @@ object_from_idとid_from_objectを修正
     self::UniqueWithinType.encode(klass_name, object.id, separator: ':')
   end
 ```
+
+## Subscription
+subscriptions.base_subscription.rbを作成する
+```ruby
+module Subscriptions
+  # BaseSubscription
+  class BaseSubscription < GraphQL::Schema::Subscription
+    argument_class Types::BaseArgument
+    field_class Types::BaseField
+    input_object_class Types::BaseInputObject
+    object_class Types::BaseObject
+  end
+end
+```
+
+subscribeとupdateメソッドを実装する
+```ruby
+module Subscriptions
+  # ServerTimeReceived
+  class ServerTimeReceived < BaseSubscription
+    field :iso8601, String, null: false
+    field :unix_timestamp, Integer, null: false
+
+    def subscribe(**_args)
+      time = Time.now
+      {
+        iso8601: time.iso8601,
+        unix_timestamp: time.to_i
+      }
+    end
+
+    def update(**_args)
+      time = Time.now
+      {
+        iso8601: time.iso8601,
+        unix_timestamp: time.to_i
+      }
+    end
+  end
+end
+```
+登録
+```ruby
+# subscription_type.rb
+    class SubscriptionType < Types::BaseObject
+      field :server_time_received, subscription: ::Subscriptions::ServerTimeReceived
+    end
+```
+
+```ruby
+class AppSchema < GraphQL::Schema
+  use GraphQL::Subscriptions::ActionCableSubscriptions
+end
+```
+
+適当なmutationを作成して、subscriptionのupdateを実行する
+```ruby
+# subscription_trigger.rb
+
+```

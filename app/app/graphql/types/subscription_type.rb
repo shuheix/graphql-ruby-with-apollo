@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 module Types
+  # SubscriptionType
   class SubscriptionType < Types::BaseObject
-    implements GraphQL::Types::Relay::Node
-
-    global_id_field :id
+    field :server_time_received, subscription: ::Subscriptions::ServerTimeReceived
   end
 end

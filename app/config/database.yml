@@ -8,16 +8,31 @@ default: &default
   port: <%= ENV.fetch("POSTGRES_PORT") { 5432 } %>
 
 development:
-  <<: *default
-  database: app_development
+  primary:
+    <<: *default
+    database: app_development
+  queue:
+    <<: *default
+    database: app_development_queue
+    migrations_paths: db/queue_migrate
 
 test:
-  <<: *default
-  database: app_test
+  primary:
+    <<: *default
+    database: app_test
+  queue:
+    <<: *default
+    database: app_test_queue
+    migrations_paths: db/queue_migrate
 
 production:
-  <<: *default
-  database: app_production
-  username: <%= ENV.fetch("POSTGRES_USER") { "deploy" } %>
-  password: <%= ENV["POSTGRES_PASSWORD"] %>
-  host: <%= ENV["POSTGRES_HOST"] %>
+  primary:
+    <<: *default
+    database: app_production
+    username: <%= ENV.fetch("POSTGRES_USER") { "deploy" } %>
+    password: <%= ENV["POSTGRES_PASSWORD"] %>
+    host: <%= ENV["POSTGRES_HOST"] %>
+  queue:
+    <<: *default
+    database: app_production_queue
+    migrations_paths: db/queue_migrate
