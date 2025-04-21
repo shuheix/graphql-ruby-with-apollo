@@ -90,3 +90,7 @@ tasks:
     cmds:
       - docker compose exec app bundle exec rails graphql:dump_schema
     silent: true
+  bash:
+    cmds:
+      - docker compose exec app bash
+    silent: true

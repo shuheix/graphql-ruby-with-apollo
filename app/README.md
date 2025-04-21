@@ -74,6 +74,7 @@ object_from_idとid_from_objectを修正
 ```
 
 ## Subscription
+action_cableを使ったsubscriptionの実装
 subscriptions.base_subscription.rbを作成する
 ```ruby
 module Subscriptions
@@ -85,6 +86,11 @@ module Subscriptions
     object_class Types::BaseObject
   end
 end
+```
+
+channelの作成
+```bash
+$ rails g channel graphql_channel
 ```
 
 subscribeとupdateメソッドを実装する
