@@ -9,8 +9,8 @@ RUN apt-get update -qq && \
 ENV APP_ROOT /app
 WORKDIR ${APP_ROOT}
 
-COPY ./Gemfile ${APP_ROOT}/
-COPY ./Gemfile.lock ${APP_ROOT}/
+COPY Gemfile ${APP_ROOT}/
+COPY Gemfile.lock ${APP_ROOT}/
 
 RUN bundle install --jobs 4 --retry 5
 
