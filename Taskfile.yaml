@@ -39,6 +39,14 @@ tasks:
     cmds:
       - docker compose exec app bundle exec rails db:reset
     silent: true
+  db_migrate_reset:
+    cmds:
+      - docker compose exec app bundle exec rails db:migrate:reset
+    silent: true
+  db_migrate:
+    cmds:
+      - docker compose exec app bundle exec rails db:migrate
+    silent: true
   force_restart:
     cmds:
       - docker compose down && docker compose up -d --build

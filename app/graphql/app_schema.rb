@@ -3,6 +3,7 @@
 class AppSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
+  subscription(Types::SubscriptionType)
 
   # For batch-loading (see https://graphql-ruby.org/dataloader/overview.html)
   use GraphQL::Dataloader
@@ -18,7 +19,7 @@ class AppSchema < GraphQL::Schema
   end
 
   # Union and Interface Resolution
-  def self.resolve_type(_abstract_type, _obj, _ctx)
+  def self.resolve_type(_abstract_type, obj, _ctx)
     Types.const_get("#{obj.class}Type")
   end
 

@@ -10,6 +10,10 @@ module Mutations
     def resolve(channel:, **args)
       message = channel.messages.create!(args)
 
+      AppSchema.subscriptions.trigger("message_received",
+                                      {},
+                                      { count: Message.count })
+
       { message: message }
     end
   end

@@ -1,8 +1,4 @@
-account = Account.create!
-workspace = Workspace.create(name: 'test')
-
-account.workspaces << workspace
-
-channel = workspace.channels.create!
-
-channel.messages.create!(content: 'sample_content')
+ws = Workspace.create!(name: "sample_workspace")
+5.times do |m|
+  ws.channels.create!(name: "channel_no_#{m}")
+end

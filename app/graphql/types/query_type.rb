@@ -8,5 +8,6 @@ module Types
     include GraphQL::Types::Relay::HasNodesField
 
     field :workspaces, resolver: Resolvers::WorkspaceResolver
+    field :channels, resolver: Resolvers::ChannelResolver
   end
 end

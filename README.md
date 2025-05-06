@@ -81,7 +81,7 @@ SubscriptionTypeを作成する
 ```ruby
 # subscription_type.rb
     class SubscriptionType < Types::BaseObject
-      field :server_time_received, subscription: ::Subscriptions::ServerTimeReceived
+      field :message_received, subscription: ::Subscriptions::MessageReceived
     end
 ```
 
@@ -98,7 +98,6 @@ module Subscriptions
   class BaseSubscription < GraphQL::Schema::Subscription
     argument_class Types::BaseArgument
     field_class Types::BaseField
-    input_object_class Types::BaseInputObject
     object_class Types::BaseObject
   end
 end

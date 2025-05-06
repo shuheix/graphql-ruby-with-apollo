@@ -3,6 +3,6 @@
 module Types
   # SubscriptionType
   class SubscriptionType < Types::BaseObject
-    field :server_time_received, subscription: ::Subscriptions::ServerTimeReceived
+    field :message_received, subscription: ::Subscriptions::MessageReceived
   end
 end
